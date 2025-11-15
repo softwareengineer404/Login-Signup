@@ -46,7 +46,7 @@ const LoginSignup = () => {
                 </div>
                 <div 
                     className={action === "Login" ? "submit gray" : "submit"} 
-                    onClick={() => setAction("Login")}
+                    onClick={() => setAction("Login")}ihkhk
                 >
                     Login
                 </div>
