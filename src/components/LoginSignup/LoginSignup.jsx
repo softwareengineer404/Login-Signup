@@ -110,9 +110,7 @@ const LoginSignup = () => {
                     Login
                 </div>
             </div>
-            <div className="submit" onClick={action === "Sign up" ? handleSignup : handleLogin}>
-               {action}
-             </div>
+            
         </div>
     );
 }
