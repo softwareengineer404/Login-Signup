@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import './LoginSignup.css';
 import axios from 'axios';
 import user_icon from '../Assets/person.png';
 import email_icon from '../Assets/email.png';
 import password_icon from '../Assets/password.png';
 const LoginSignup = () => {
+    const navigate = useNavigate();
     const [action, setAction] = useState("Sign up");
     
     // state to store input values
@@ -36,6 +38,8 @@ const LoginSignup = () => {
         .then(res => {
             alert("Signup successful!");
             console.log(res.data);
+            localStorage.setItem("loggedIn", "true"); 
+            navigate("/dashbord");
         })
         .catch(err => {
             alert("Signup failed!");
@@ -95,20 +99,26 @@ const LoginSignup = () => {
             <div className="submit-container">
                 <div 
                     className={action === "Sign up" ? "submit gray" : "submit"} 
-                    onClick={() => {
-                        if (validateForm()) setAction("Sign up")}}
-                        
-                >
-                    Signup
-                </div>
+                    onClick={()=>{
+                                    if (validateForm())
+                                       handleSignup();
+                                   else {
+                                        setAction("Sign up");
+                                    }
+                    }}>Sign up </div>
                 <div 
                     className={action === "Login" ? "submit gray" : "submit"} 
-                    onClick={() => {
-                        if (validateForm()) setAction("Login")}}
-                        
-                >
-                    Login
+                    onClick={()=>{
+                        if (validateForm())
+                            handleLogin();
+                        else {
+                            setAction("Login");
+                        }
+                                 
+                    }}
+                    >Login
                 </div>
+                
             </div>
             
         </div>
